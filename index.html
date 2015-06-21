@@ -49,10 +49,333 @@
         <h4>
 <a id="about-this-blog" class="anchor" href="#about-this-blog" aria-hidden="true"><span class="octicon octicon-link"></span></a>About this Blog</h4>
 
-<p>Ok,My name is Eason Jiang,And this's the first time I write tech article in English.  I used be a game designer , and for now I'm a cocos2dx game developer 
+<p>Hi,My name is Eason Jiang,And this's the first time I write tech article in English.  I used be a game designer , and for now I'm a cocos2dx game developer 
 Rencently, I'm interseting in Unity 3D,because I believe it's a more proficent technology than Cocos2dx is.
 I believe the best way to learn a tech is try to teach it to someone else. and this the reason I build this Blog.
 So,talk is cheap,let's code sth.</p>
+
+<h2>
+<a id="button-and-spin" class="anchor" href="#button-and-spin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Button and Spin</h2>
+
+<p>The first tutorial is about button. In this tutorial our target is to create an cube and a button. </p>
+
+<h1>
+<a id="when-we-click-the-button-the-cube-spinning" class="anchor" href="#when-we-click-the-button-the-cube-spinning" aria-hidden="true"><span class="octicon octicon-link"></span></a>When we click the button, the cube spinning</h1>
+
+<p>The first step is create a new project.</p>
+
+<p>blablabla 
+After that ,we create a plane as background</p>
+
+<p>Step 3, We create a cube in object</p>
+
+<p>And we select the cube and add a C# script on it, name it as  "Spin.cs"</p>
+
+<p>Double click it, and enter the follow code</p>
+
+<pre><code>void OnGUI(){
+    if (GUI.Button (new Rect (100, 170, 200, 100), "Spin The Cube")) {
+        transform.Rotate(Vector3.up * Time.deltaTime * (-100));
+    }
+
+}
+</code></pre>
+
+<p>This's a little bit werid from my pov.In cocos2dx, or some other game dev engine,If we want to create some UI, there's step to do it.
+Step 1: init the button
+Step 2: update the call back of the button,some time this step is already done in step one.</p>
+
+<p>So let's do some experiment,let's modify the code in OnGUI() like the follow:</p>
+
+<pre><code>//original x
+private float movx = 1;
+void OnGUI(){
+
+    movx = movx +  0.01f;
+    if (GUI.Button (new Rect (movx, 170, 200, 100), "Spin The Cube")) {
+        transform.Rotate(Vector3.up * Time.deltaTime * (-100));
+    }
+
+    Debug.Log ("On GUI");
+}
+</code></pre>
+
+<p>After we run it, the console displays the results, So many</p>
+
+<p>"On GUI"
+"On GUI"
+"On GUI"
+"On GUI"
+"On GUI"
+....</p>
+
+<p>Meanwhile, the button continuously move to the right, so we may safely arrive at the following conclusion </p>
+
+<p>1.The function OnGUI() is a game update function,it'll be updated at regular intervals
+2.There's no init function (for now),so unity just draw a new button every interval.</p>
+
+<p>So we deduce that every update function work like OnGUI(), if you want to use these like old way,you have to define them out of these functions.</p>
+
+<h1></h1>
+
+<p>Best practioe Unity Sublime plugin</p>
+
+<p>Unity Completion Light</p>
+
+<h1></h1>
+
+<p>Let's create a plane as game background, and modify it's coordinates to origin position,that means modify it's transform postion to (0,0,0),and move our camera to make sure the plane in our view;
+    Tips:
+        Alt +  mouse left, scene view rotate with the ground
+        Alt +  Ctrl(Com) + left, scene view move translation
+        Mouse wheel:Move the view forth and back
+    Tips End</p>
+
+<p>Next feature, let's try to make the cube jump.
+First,modify the cube's postion,drag the handle on it to move to the corresponding direction
+And we still need a sphere, create it in game object.</p>
+
+<h4>
+<a id="add-rigidbody" class="anchor" href="#add-rigidbody" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add rigidbody</h4>
+
+<p>Now add a Rigidbody to both of them, to make sure that they have mass and affected by gravity
+and then lift the cube to the air,after that when we press the Play button,the cube will fall firstly.</p>
+
+<h4>
+<a id="make-the-cube-jump" class="anchor" href="#make-the-cube-jump" aria-hidden="true"><span class="octicon octicon-link"></span></a>Make the cube jump</h4>
+
+<p>Now it's has a rigidbody, add the follow code to the Update()</p>
+
+<pre><code>void Update () {
+    if(Input.GetMouseButtonDown(0)){
+        this.GetComponent&lt;Rigidbody&gt;().velocity = Vector3.up * this.jump_speed;
+    }
+}
+</code></pre>
+
+<p>After this, each time when we press the mouse left button,it'll get a velocity upward,and the cube jump once</p>
+
+<h4>
+<a id="add-material" class="anchor" href="#add-material" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add material</h4>
+
+<p>In project view, press mouse right and create a Material ,and change it's name to Player Material,and modify it's 
+color to what ever you want, and drag it to any gameObject that have some Render</p>
+
+<h4>
+<a id="add-light" class="anchor" href="#add-light" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add light</h4>
+
+<p>Light is a kind of GameObject,create one and drag it to any postion you want, you won't miss it.</p>
+
+<h3>
+<a id="send-the-ball-fly" class="anchor" href="#send-the-ball-fly" aria-hidden="true"><span class="octicon octicon-link"></span></a>Send the ball fly</h3>
+
+<p>First, add a rigidboy to the ball.
+Second,add a script to it and add the follow in the Start() function</p>
+
+<pre><code>// Use this for initialization
+void Start () {
+    this.GetComponent&lt;Rigidbody&gt;().velocity = new Vector3(-0.8f, 8.0f , 0.0f);
+
+}
+</code></pre>
+
+<p>Now the ball will fly like a parabola</p>
+
+<h3>
+<a id="organize-project-folder" class="anchor" href="#organize-project-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a>Organize project folder</h3>
+
+<p>Create folder in project view and drag everything according classfication :Prefab,Scene,Script,Material</p>
+
+<h3>
+<a id="create-a-launcher-script" class="anchor" href="#create-a-launcher-script" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a Launcher Script</h3>
+
+<p>Let's try to fire some ball.</p>
+
+<p>Create a empty GameObject and create a Script on the gameobject, name it Laucher.cs and add the follow code in it</p>
+
+<pre><code>public class Launcher : MonoBehaviour {
+
+    public GameObject ballPrefab;
+
+    // Use this for initialization
+    void Start () {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if(Input.GetMouseButtonDown(1)){
+            Instantiate(this.ballPrefab);
+        }
+
+    }
+}
+</code></pre>
+
+<p>Now drag ball prefab in to inspector Ball Prefab slot and run the game
+Each time we press the right button, a ball prefab be Instantiated</p>
+
+<h4>
+<a id="delete-the-ball-out-of-view" class="anchor" href="#delete-the-ball-out-of-view" aria-hidden="true"><span class="octicon octicon-link"></span></a>Delete the ball out of view</h4>
+
+<p>If we keep clicking the right mouse, there'll be full of balls in this scene,and
+even they leave the scene, they still exist. 
+So let's try remove them when they're not visible.</p>
+
+<pre><code>void OnBecameInvisible(){
+    Destroy(this.gameObject);
+}
+</code></pre>
+
+<p>And when they out of the view ,they'll be destoryed</p>
+
+<h2>
+<a id="forbide-the-cube-jump-twice-in-the-air" class="anchor" href="#forbide-the-cube-jump-twice-in-the-air" aria-hidden="true"><span class="octicon octicon-link"></span></a>Forbide the cube jump twice in the air</h2>
+
+<p>For now, when we press the mouse left, the cube jumped. That is not what happened in real life,</p>
+
+<p>Let's add the follow code</p>
+
+<p>public class Player : MonoBehaviour {</p>
+
+<pre><code>protected float jump_speed = 5.0f;
+private bool is_landing = false;
+// Use this for initialization
+void Start () {
+    is_landing = false; 
+}
+
+// Update is called once per frame
+void Update () {
+    if (is_landing) 
+    {
+        if(Input.GetMouseButtonDown(0)){
+            this.GetComponent&lt;Rigidbody&gt;().velocity = Vector3.up * this.jump_speed;
+            is_landing = false;
+        }
+    }
+
+}
+
+void OnCollisionEnter(Collision collision)
+{
+    is_landing = true;
+
+}
+</code></pre>
+
+<p>}</p>
+
+<p>What we do in the previous code?
+We define a bool vale is_landing to record the cube's landing state,
+each time the cube jumped, the is_landing set false,and when the cube collide anything, the
+is_landing state will be set true,and only when the is_landing state
+is true, the jump function will be executed.</p>
+
+<p>But there's bug in it,</p>
+
+<p>Let's fix it.</p>
+
+<p>Firstly , add a Debug.Break() in Update()
+This function will pause the game when be called,and after that, we can play game each frame
+And we find the collision problem, when cube collide anything,the is_landing state will be set true,and the cube
+be able to jump again.
+And the fix plan is Add "Tag" to the prehab, make sure only when the plane collide, the state will be reset</p>
+
+<p>Set the Floor tag as "Floor", and add the follow code 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Floor") 
+        {
+            is_landing = true;<br>
+        }
+    }</p>
+
+<p>So only when the cube collide the floor, it's landing state will be reset to ture</p>
+
+<h4>
+<a id="which-script-run-first" class="anchor" href="#which-script-run-first" aria-hidden="true"><span class="octicon octicon-link"></span></a>Which Script run first?</h4>
+
+<p>As we already know,the gameobject can add many script on it, but which one run firstly? or just random?
+Let's do a little experiment
+Create an empty gameObject and add one script on it,</p>
+
+<p>public class Test1 : MonoBehaviour {</p>
+
+<pre><code>private bool isUpdated = false;
+// Use this for initialization
+void Start () {
+    Debug.Log("test 1 start");
+}
+
+// Update is called once per frame
+void Update () {
+    if (!isUpdated) 
+    {
+        Debug.Log("test 1 up");
+        isUpdated = true;
+
+    }
+}
+</code></pre>
+
+<p>}</p>
+
+<p>As we see, This script just output some log, when Start(),and first time Update(),now let's add another one on it</p>
+
+<p>public class Test2 : MonoBehaviour {</p>
+
+<pre><code>private bool isUpdated = false;
+// Use this for initialization
+void Start () {
+    Debug.Log("test 2 start");
+
+}
+
+// Update is called once per frame
+void Update () {
+    if (!isUpdated) 
+    {
+        Debug.Log("test 2 up");
+        isUpdated = true;
+
+    }
+
+}
+</code></pre>
+
+<p>}</p>
+
+<p>Basically same funcionality,but output content is "test 2.."
+Run the game,and the Console output</p>
+
+<p>test 2 start
+test 1 start
+test 2 up
+test 1 up</p>
+
+<p>The conclusion is quite clear, Unity will run the script according to the reverse chronological time order.</p>
+
+<h3>
+<a id="freeze-rotation" class="anchor" href="#freeze-rotation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Freeze Rotation</h3>
+
+<p>The cube's rigidbody has a option name "Constrains",unfold it and check the boxes that you want to freeze</p>
+
+<h3>
+<a id="set-the-bounciness" class="anchor" href="#set-the-bounciness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Set the bounciness</h3>
+
+<p>Set the Ball prefab's mass to 0.01 in it's rigidbody, and apply it, now every ball's mass is seted to the same mass
+But that doesn't look very good, so let's try the Physic Material</p>
+
+<p>In project view, press right mouse and Create-&gt;Physic Material and name it Ball Physic Material
+Select that and change it's Bounciness to 1, and drag this Physic Material to Ball's Sphere Collider-&gt;Material,
+and apply it.
+Now, when they collide, the ball bounced quickly</p>
+
+<h3>
+<a id="set-the-gravity" class="anchor" href="#set-the-gravity" aria-hidden="true"><span class="octicon octicon-link"></span></a>Set the gravity</h3>
+
+<p>Edit-&gt;Project Setting-&gt;Physics ,change the Gravity y to -20, then cube and balls falls more quickly.</p>
       </section>
 
       <footer>
