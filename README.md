@@ -1,4 +1,4 @@
-####About this Blog
+#About this Blog
 
 Hi,My name is Eason Jiang,And this's the first time I write tech article in English.  I used be a game designer , and for now I'm a cocos2dx game developer 
 
