@@ -152,3 +152,49 @@ Now when we touch the cube, we'll get the log
 
 And now ,let's copy the cube prefab, and presee them alternatly,
 we'll find the num is always raise up.
+But what happened if we switch the scene?
+
+#Switch scene and Test singleton
+Add the follow code in touchScript.cs
+and change the levelIndex value to 1;
+Now create a new Scene name it "AnotherScene" and add both of them in File->Build setting 
+When we touch the cube, the scene switch
+
+	public int levelIndex;
+	void OnMouseDown()
+	{
+		Application.LoadLevel(levelIndex);
+		int curNum = NoBehave.getInstance().numTest;
+		Debug.Log("curNum " + curNum);
+		NoBehave.getInstance().numTest = curNum + 1;
+		//numTest is a int value in NoBehave
+	}
+
+#####Test the singleton again
+
+Add another cube and attach a touchScript.cs on it, and reset it's levelIndex value to 0
+
+Now when we touch any cube in both scene, the curNum will increase and the scene will be replace.
+
+#####Object awake destory test
+
+Now let's add follow code in touchScript.cs
+
+	void Awake()
+	{
+		Debug.Log("Cube a wake" + levelIndex);
+	}
+	void OnDestroy()
+	{
+		Debug.Log("cube destroy" + levelIndex);
+	}
+
+As we see, when we switch the scene,it just create new objects
+
+
+
+
+
+
+
+
