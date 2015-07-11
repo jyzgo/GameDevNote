@@ -71,7 +71,7 @@ public class ScTest : MonoBehaviour {
 		Debug.Log("Destroy "+ scriptIndex);
 	}
 }
-<code><pre>
+</code></pre>
 
 Now, let's create a new cube and add the script on it.
 Observe the output of console
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 }
-<code><pre>
+</code></pre>
 
 Previous code made it as a singleton, because the only way to create a new object in Unity is through
 Instantiate method
@@ -185,7 +185,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 }
-<code><pre>
+</code></pre>
 Onece we press the button, we'll create an GameObject as Cube and add a RigidBody on it
 
 
