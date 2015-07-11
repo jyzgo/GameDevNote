@@ -162,8 +162,7 @@ Instantiate method
 #Create GameObject through script
 
 Add follow code in one script's OnGUI function
-
-{
+public class GameManager : MonoBehaviour {
 	private float originX = 0f;
 	private float offsetX = 1.5f;
 	void OnGUI()
