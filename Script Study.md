@@ -136,6 +136,8 @@ The oreder of the calls is reversed
 
 Create an empty GameObject and create a new script name it GameManager
 
+
+
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
@@ -160,6 +162,8 @@ Instantiate method
 #Create GameObject through script
 
 Add follow code in one script's OnGUI function
+
+{
 	private float originX = 0f;
 	private float offsetX = 1.5f;
 	void OnGUI()
@@ -175,7 +179,8 @@ Add follow code in one script's OnGUI function
 			originX += offsetX;
 			
 		}
-	}}
+	}
+}
 
 Onece we press the button, we'll create an GameObject as Cube and add a RigidBody on it
 
