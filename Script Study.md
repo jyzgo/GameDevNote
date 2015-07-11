@@ -4,7 +4,7 @@
 
 Let's introduce some important function in Unity
 Look at the following code.
-
+<pre><code>
 public class ScTest : MonoBehaviour {
 
 	public int scriptIndex = 1;
@@ -71,6 +71,7 @@ public class ScTest : MonoBehaviour {
 		Debug.Log("Destroy "+ scriptIndex);
 	}
 }
+<code><pre>
 
 Now, let's create a new cube and add the script on it.
 Observe the output of console
@@ -137,7 +138,7 @@ The oreder of the calls is reversed
 Create an empty GameObject and create a new script name it GameManager
 
 
-
+<pre><code>
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
@@ -155,6 +156,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 }
+<code><pre>
 
 Previous code made it as a singleton, because the only way to create a new object in Unity is through
 Instantiate method
@@ -164,7 +166,7 @@ Instantiate method
 #####Add follow code in one script's OnGUI function
 
 
-
+<pre><code>
 public class GameManager : MonoBehaviour {
 	private float originX = 0f;
 	private float offsetX = 1.5f;
@@ -183,7 +185,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 }
-
+<code><pre>
 Onece we press the button, we'll create an GameObject as Cube and add a RigidBody on it
 
 
