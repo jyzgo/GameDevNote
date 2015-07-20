@@ -54,4 +54,10 @@ in script study after singleton section
 
 ####Jolly Jam Unity
 
+####Exclude list
+C#
+Animator/Animation
+Paticle
+UI
+
 
