@@ -1,14 +1,12 @@
 #Outline
 
-###Game loop
+##Target1: What is the Unity?
+##Target2: How to organize code in unity?(What is script?)
+##Target3: Understand odd asset in unity.
 
-####Touch
-####Logic
-####Render
+###Example in real world
 
-###Simulation
-
-####Camera
+####Camera (need a toy)
 ####Cartesian coordinate system
 ####Plane
 ####Cube
@@ -30,6 +28,13 @@
 ####Project
 
 ###Script
+
+####Game loop
+
+####Touch
+####Logic
+####Render
+
 ####Life cycle in script study
 break before singleton
 
@@ -38,12 +43,12 @@ break before singleton
 ###Instantiate 
 Button and Spin
 
-####Depth in prefab
+####Depth in prefab/animator....or something else
 it's a class
 
 ####Create a cube from empty
 
-####Think unity in cocos2d way
+####Think unity in cocos2d way (a markdown)
 GameObject = CCNode
 Script = function
 
